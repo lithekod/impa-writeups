@@ -93,7 +93,15 @@ A north arrow 'N' would connect $G[cycle][r][c]$ with $G[(cycle+1) \text{ mod } 
 $G[(cycle+1) \text{ mod } 4][r][c]$ with $G[(cycle+2) \text{ mod } 4][r][c+1]$ (east) and so on for each letter.
 Then we run dijkstras from our starting node $G[0][0][0]$ and output the number we get when we first reach $G[cycle][r-1][c-1]$ for any number $cycle$.
 
-# IBM Fencing - p11759 <span style="color:red"> Wanted</span>
+# IBM Fencing - p11759 (Credit: Anton Eldeborg Lundin)
+
+## Topics:
+- Trees
+- Geometry
+
+## Solution idea:
+
+Since every wall is a convex polygon we know that for a wall to be inside another wall it has to be smaller in total distance. We also know that the westmost point of the wall inside must be greater than the outside walls westmost point, the most northern point less, the eastmost point less and the most southern point greater. Thus, when receiving input, we only need to save these 4 values and the total distance of each wall. Sort the walls by total distance and create a tree (root layer 0) where the first layer (layer 1)represents the different communities, and the children are all the walls inside the corresponding wall. Create layers by comparing each wall to all walls with greater total distance until the coordinates pass the previous criteria and add the current wall as a child to that wall. Loop through each layer of the tree, switch between metal and wood for each layer, calculate the price with the wall lengths and add them up.
 
 # Component Placement - p11765
 ## Topics:
